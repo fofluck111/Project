@@ -1,0 +1,7 @@
+.menu-card {
+  transition: 0.2s;
+}
+
+.menu-card.active {
+  transform: scale(1.05);
+}
