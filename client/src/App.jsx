@@ -11,31 +11,36 @@ function App() {
   const [table, setTable] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // ✅ toggle cart (กัน bug)
+  // เปิด / ปิด Cart
   const toggleCart = () => {
     setIsCartOpen((prev) => !prev);
   };
 
-  // 💾 โหลดข้อมูล
+  // โหลดข้อมูลจาก localStorage
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     const savedTable = localStorage.getItem("table");
 
-    if (savedCart) setCart(JSON.parse(savedCart));
-    if (savedTable) setTable(JSON.parse(savedTable));
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+
+    if (savedTable) {
+      setTable(JSON.parse(savedTable));
+    }
   }, []);
 
-  // 💾 เซฟ cart
+  // บันทึก Cart
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // 💾 เซฟ table
+  // บันทึกโต๊ะ
   useEffect(() => {
     localStorage.setItem("table", JSON.stringify(table));
   }, [table]);
 
-  // ➕ เพิ่มสินค้า
+  // เพิ่มสินค้า
   const addToCart = (item) => {
     setCart((prev) => {
       const exist = prev.find((i) => i.id === item.id);
@@ -50,24 +55,6 @@ function App() {
 
       return [...prev, { ...item, qty: 1 }];
     });
-  };
-
-  // ➖ ลบทีละ 1
-  const removeOne = (id) => {
-    setCart((prev) =>
-      prev
-        .map((item) =>
-          item.id === id
-            ? { ...item, qty: item.qty - 1 }
-            : item
-        )
-        .filter((item) => item.qty > 0)
-    );
-  };
-
-  // 🗑️ ลบทั้งหมด
-  const clearCart = () => {
-    setCart([]);
   };
 
   return (

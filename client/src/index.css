@@ -1,23 +1,11 @@
-:root {
-  --primary: #f97316;
-  --primary-dark: #ea580c;
-
-  --text: #111;
-  --bg: #fff;
-  --border: #e5e4e7;
-
-  --shadow-sm: rgba(0,0,0,0.1) 0 10px 15px -3px;
-  --shadow-md: rgba(0,0,0,0.15) 0 10px 20px -5px;
-
-  font-family: system-ui, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-}
-
-.app {
-  min-height: 100vh;
+  background: #fafafa;
+  color: #111;
 }

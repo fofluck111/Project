@@ -1,0 +1,34 @@
+.table-section {
+  padding: 40px;
+  text-align: center;
+}
+
+.table-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.table-btn {
+  width: 45px;
+  height: 45px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #eee;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.table-btn:hover {
+  background: #ddd;
+}
+
+.table-btn.active {
+  background: #10b981;
+  color: white;
+}
