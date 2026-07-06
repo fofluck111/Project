@@ -1,29 +1,32 @@
 function Table({ table, setTable }) {
-
-  const selectTable = (num) => {
-    setTable(num);
-    localStorage.setItem("table", num);
-  };
+  const tables = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
-    <div className="table-section">
+    <div style={{ padding: 20 }}>
+      <h2>🍽️ เลือกโต๊ะ</h2>
 
-      <h3>เลือกโต๊ะ</h3>
-
-      <div className="table-grid">
-
-        {[1,2,3,4,5,6].map((num) => (
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+        {tables.map((t) => (
           <button
-            key={num}
-            className={`table-btn ${table === num ? "active" : ""}`}
-            onClick={() => selectTable(num)}
+            key={t}
+            onClick={() => setTable(t)}
+            style={{
+              padding: 10,
+              border: "none",
+              borderRadius: 8,
+              cursor: "pointer",
+              background: table === t ? "#22c55e" : "#e5e7eb",
+              color: table === t ? "white" : "black"
+            }}
           >
-            {num}
+            โต๊ะ {t}
           </button>
         ))}
-
       </div>
 
+      <p style={{ marginTop: 10 }}>
+        โต๊ะที่เลือก: {table || "ยังไม่ได้เลือก"}
+      </p>
     </div>
   );
 }

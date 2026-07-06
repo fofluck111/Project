@@ -15,53 +15,23 @@ function Navbar({ toggleCart, cartCount }) {
   return (
     <nav className="navbar">
 
-      <div className="logo">
-        ☕ Smart Café
-      </div>
+      <div className="logo">☕ Smart Café</div>
 
       <ul className="menu">
-
-        <li>
-          <FaHome />
-          <span>หน้าแรก</span>
-        </li>
-
-        <li>
-          <MdRestaurantMenu />
-          <span>เมนู</span>
-        </li>
-
-        <li>
-          <HiGift />
-          <span>โปรโมชั่น</span>
-        </li>
-
-        <li>
-          <BsCalendar2CheckFill />
-          <span>จองโต๊ะ</span>
-        </li>
-
-        <li>
-          <IoCall />
-          <span>ติดต่อ</span>
-        </li>
-
+        <li><FaHome /><span>หน้าแรก</span></li>
+        <li><MdRestaurantMenu /><span>เมนู</span></li>
+        <li><HiGift /><span>โปรโมชั่น</span></li>
+        <li><BsCalendar2CheckFill /><span>จองโต๊ะ</span></li>
+        <li><IoCall /><span>ติดต่อ</span></li>
       </ul>
 
       <div className="nav-right">
 
-        <button
-          className="cart-btn"
-          onClick={toggleCart}
-        >
+        <button className="cart-btn" onClick={toggleCart}>
           <FaShoppingCart />
-
           {cartCount > 0 && (
-            <span className="cart-badge">
-              {cartCount}
-            </span>
+            <span className="cart-badge">{cartCount}</span>
           )}
-
         </button>
 
         <button className="login-btn">

@@ -1,36 +1,23 @@
-import "./Menu.css";
+import "./Hero.css";
 
-function Menu({ addToCart }) {
-  const items = [
-    { id: 1, name: "Americano", price: 60 },
-    { id: 2, name: "Latte", price: 75 },
-    { id: 3, name: "Cappuccino", price: 80 },
-    { id: 4, name: "Mocha", price: 85 },
-    { id: 5, name: "Green Tea", price: 55 },
-  ];
-
+function Hero() {
   return (
-    <section className="menu-section">
+    <section className="hero">
 
-      <h2>☕ เมนูของเรา</h2>
+      <div className="hero-content">
 
-      <div className="menu-grid">
+        <h1>☕ Smart Café</h1>
 
-        {items.map((item) => (
-          <div className="menu-card" key={item.id}>
+        <h2>ระบบสั่งอาหารภายในร้าน</h2>
 
-            <h3>{item.name}</h3>
+        <p>
+          สั่งอาหารง่าย ๆ ผ่านมือถือ
+          รองรับทุกอุปกรณ์ ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์
+        </p>
 
-            <p>{item.price} บาท</p>
-
-            <button
-              onClick={() => addToCart(item)}
-            >
-              เพิ่มลงตะกร้า
-            </button>
-
-          </div>
-        ))}
+        <button className="hero-btn">
+          🍽️ สั่งอาหารเลย
+        </button>
 
       </div>
 
@@ -38,4 +25,4 @@ function Menu({ addToCart }) {
   );
 }
 
-export default Menu;
+export default Hero;
