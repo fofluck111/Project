@@ -1,14 +1,12 @@
 import "./Cart.css";
 
-function Cart({ cart, setCart, isOpen }) {
+function Cart({ cart, setCart, isOpen, toggleCart }) {
 
-  // 💰 รวมราคา
   const total = cart.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
   );
 
-  // ❌ ลบ 1 ชิ้น
   const removeItem = (id) => {
     const updated = cart
       .map((item) =>
@@ -21,47 +19,53 @@ function Cart({ cart, setCart, isOpen }) {
     setCart(updated);
   };
 
-  // 🗑️ ล้างทั้งหมด
-  const clearCart = () => {
-    setCart([]);
-  };
+  const clearCart = () => setCart([]);
+
+  if (!isOpen) return null;
 
   return (
-    <div className={`cart ${isOpen ? "open" : ""}`}>
+    <>
+      {/* overlay */}
+      <div className="cart-overlay" onClick={toggleCart}></div>
 
-      <h2>🛒 ตะกร้าสินค้า</h2>
+      {/* popup */}
+      <div className="cart-popup">
 
-      {cart.length > 0 && (
-        <button className="clear-btn" onClick={clearCart}>
-          🗑️ ลบทั้งหมด
-        </button>
-      )}
+        <div className="cart-header">
+          <h3>🛒 ตะกร้า</h3>
+          <button onClick={toggleCart}>✖</button>
+        </div>
 
-      {cart.length === 0 ? (
-        <p>ยังไม่มีสินค้า</p>
-      ) : (
-        cart.map((item) => (
-          <div className="cart-item" key={item.id}>
-            <div>
-              <p>{item.name}</p>
+        {cart.length === 0 ? (
+          <p>ยังไม่มีสินค้า</p>
+        ) : (
+          cart.map((item) => (
+            <div className="cart-item" key={item.id}>
+              <div>
+                <p>{item.name}</p>
+                <small>
+                  {item.price} x {item.qty}
+                </small>
+              </div>
 
-              <small>
-                {item.price} x {item.qty} ={" "}
-                {item.price * item.qty} บาท
-              </small>
+              <button onClick={() => removeItem(item.id)}>
+                ❌
+              </button>
             </div>
+          ))
+        )}
 
-            <button onClick={() => removeItem(item.id)}>
-              ❌
-            </button>
-          </div>
-        ))
-      )}
+        {cart.length > 0 && (
+          <button className="clear-btn" onClick={clearCart}>
+            ลบทั้งหมด
+          </button>
+        )}
 
-      <hr />
+        <hr />
 
-      <h3>รวม: {total} บาท</h3>
-    </div>
+        <h4>รวม: {total} บาท</h4>
+      </div>
+    </>
   );
 }
 

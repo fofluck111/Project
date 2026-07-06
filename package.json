@@ -1,4 +1,7 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "dependencies": {
+    "react-icons": "^5.7.0"
+  }
 }

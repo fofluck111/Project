@@ -11,12 +11,12 @@ function App() {
   const [table, setTable] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-const toggleCart = () => {
-  setIsCartOpen(!isCartOpen);
-};
+  // ✅ toggle cart (กัน bug)
+  const toggleCart = () => {
+    setIsCartOpen((prev) => !prev);
+  };
 
-
-  // 💾 โหลดข้อมูลตอนเปิดเว็บ
+  // 💾 โหลดข้อมูล
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     const savedTable = localStorage.getItem("table");
@@ -35,7 +35,7 @@ const toggleCart = () => {
     localStorage.setItem("table", JSON.stringify(table));
   }, [table]);
 
-  // ➕ เพิ่มสินค้า (ถูกต้อง 100%)
+  // ➕ เพิ่มสินค้า
   const addToCart = (item) => {
     setCart((prev) => {
       const exist = prev.find((i) => i.id === item.id);
@@ -72,23 +72,23 @@ const toggleCart = () => {
 
   return (
     <>
-     <Navbar
-  toggleCart={toggleCart}
-  cartCount={cart.reduce((sum, item) => sum + item.qty, 0)}
-/>
+      <Navbar
+        toggleCart={toggleCart}
+        cartCount={cart.reduce((sum, item) => sum + item.qty, 0)}
+      />
 
       <Table table={table} setTable={setTable} />
 
       <Hero />
 
       <Menu addToCart={addToCart} />
-<Cart
-  cart={cart}
-  setCart={setCart}
-  isOpen={isCartOpen}
-/>
-     
 
+      <Cart
+        cart={cart}
+        setCart={setCart}
+        isOpen={isCartOpen}
+        toggleCart={toggleCart}
+      />
     </>
   );
 }
