@@ -123,3 +123,148 @@
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
+/* =========================
+ MOBILE NAVBAR
+========================= */
+
+
+.hamburger {
+
+  display:none;
+
+  width:45px;
+
+  height:45px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:var(--primary);
+
+  font-size:22px;
+
+  cursor:pointer;
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+.navbar{
+
+  padding:16px 20px;
+
+}
+
+
+
+.logo{
+
+  font-size:22px;
+
+}
+
+
+
+.hamburger{
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+}
+
+
+
+.login-btn span{
+
+  display:none;
+
+}
+
+
+
+.login-btn{
+
+  width:45px;
+
+  height:45px;
+
+  padding:0;
+
+  justify-content:center;
+
+}
+
+
+
+.menu{
+
+
+  position:absolute;
+
+  top:75px;
+
+  left:0;
+
+  width:100%;
+
+
+  background:white;
+
+
+  flex-direction:column;
+
+
+  gap:0;
+
+
+  padding:15px 0;
+
+
+  box-shadow:var(--shadow-md);
+
+
+  transform:translateY(-120%);
+
+
+  transition:.3s;
+
+
+}
+
+
+
+.menu.active{
+
+  transform:translateY(0);
+
+}
+
+
+
+.menu li{
+
+  width:100%;
+
+  padding:15px 25px;
+
+}
+
+
+
+.nav-right{
+
+  gap:10px;
+
+}
+
+
+}
