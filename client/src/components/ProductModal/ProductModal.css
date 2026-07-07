@@ -1,0 +1,396 @@
+/* =========================
+   MODAL OVERLAY
+========================= */
+
+.modal-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,0.45);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 9999;
+
+  padding: 20px;
+
+}
+
+
+
+/* =========================
+   PRODUCT MODAL
+========================= */
+
+
+.product-modal {
+
+  width: 100%;
+
+  max-width: 420px;
+
+  background:white;
+
+  border-radius:24px;
+
+  padding:25px;
+
+  position:relative;
+
+  text-align:center;
+
+
+  animation: popup .3s ease;
+
+  box-shadow:
+  0 20px 50px rgba(0,0,0,0.2);
+
+}
+
+
+
+@keyframes popup {
+
+  from {
+
+    opacity:0;
+
+    transform:
+    scale(.9);
+
+  }
+
+
+  to {
+
+    opacity:1;
+
+    transform:
+    scale(1);
+
+  }
+
+}
+
+
+
+
+/* =========================
+   IMAGE
+========================= */
+
+
+.product-modal img {
+
+  width:100%;
+
+  height:220px;
+
+  object-fit:cover;
+
+  border-radius:18px;
+
+  margin-bottom:20px;
+
+}
+
+
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+
+.close-btn {
+
+  position:absolute;
+
+  top:15px;
+
+  right:15px;
+
+
+  width:35px;
+
+  height:35px;
+
+
+  border:none;
+
+  border-radius:50%;
+
+
+  background:#f3f4f6;
+
+
+  cursor:pointer;
+
+
+  font-size:18px;
+
+}
+
+
+
+
+/* =========================
+   BUTTON
+========================= */
+
+
+.confirm-btn {
+
+
+  width:100%;
+
+
+  padding:14px;
+
+
+  margin-top:20px;
+
+
+  border:none;
+
+
+  border-radius:14px;
+
+
+  background:#10b981;
+
+
+  color:white;
+
+
+  font-size:16px;
+
+
+  font-weight:600;
+
+
+  cursor:pointer;
+
+
+  transition:.3s;
+
+}
+
+
+
+.confirm-btn:hover {
+
+  background:#059669;
+
+  transform:scale(1.03);
+
+}
+
+
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+
+@media(max-width:480px){
+
+
+.product-modal {
+
+  padding:20px;
+
+}
+
+
+.product-modal img {
+
+ height:180px;
+
+}
+
+
+}
+/* =========================
+   OPTIONS
+========================= */
+
+
+.options {
+
+  text-align:left;
+
+  margin-top:20px;
+
+}
+
+
+
+.option-group {
+
+  margin-bottom:20px;
+
+}
+
+
+
+.option-group h4 {
+
+  margin-bottom:10px;
+
+  font-size:17px;
+
+}
+
+
+
+
+.option-group button {
+
+
+  border:none;
+
+  padding:10px 14px;
+
+  margin-right:8px;
+
+  margin-bottom:8px;
+
+
+  border-radius:12px;
+
+
+  background:#f3f4f6;
+
+
+  cursor:pointer;
+
+
+  transition:.25s;
+
+
+}
+
+
+
+
+.option-group button:hover {
+
+
+  transform:translateY(-2px);
+
+
+}
+
+
+
+/* ปุ่มที่เลือก */
+
+.option-group button.active {
+
+
+  background:#10b981;
+
+  color:white;
+
+
+}
+
+
+
+/* =========================
+   MOBILE OPTION
+========================= */
+
+
+@media(max-width:480px){
+
+
+  .option-group button {
+
+    padding:9px 12px;
+
+    font-size:14px;
+
+  }
+
+
+}
+.option-group label {
+
+  display:block;
+
+  margin-bottom:10px;
+
+  cursor:pointer;
+
+}
+
+
+.option-group input {
+
+  margin-right:8px;
+
+  width:16px;
+
+  height:16px;
+
+}
+.quantity-box {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+}
+
+
+.quantity-box button {
+
+  width:40px;
+
+  height:40px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#10b981;
+
+  color:white;
+
+  font-size:20px;
+
+  cursor:pointer;
+
+}
+
+
+.quantity-box span {
+
+  font-size:20px;
+
+  font-weight:bold;
+
+}
+.total-price {
+
+  font-size:22px;
+
+  font-weight:bold;
+
+  color:#10b981;
+
+  margin-top:15px;
+
+}

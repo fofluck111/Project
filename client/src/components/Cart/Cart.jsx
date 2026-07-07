@@ -2,71 +2,269 @@ import "./Cart.css";
 
 function Cart({ cart, setCart, isOpen, toggleCart }) {
 
+
   const total = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
+    (sum, item) =>
+      sum + item.price * item.qty,
     0
   );
 
-  const removeItem = (id) => {
-    const updated = cart
-      .map((item) =>
-        item.id === id
-          ? { ...item, qty: item.qty - 1 }
-          : item
-      )
-      .filter((item) => item.qty > 0);
 
-    setCart(updated);
+  const increaseQty = (id) => {
+
+    setCart(
+      cart.map((item)=>
+
+        item.cartId === id
+
+        ? {
+            ...item,
+            qty:item.qty + 1
+          }
+
+        : item
+
+      )
+    );
+
   };
 
-  const clearCart = () => setCart([]);
+
+
+  const decreaseQty = (id) => {
+
+    setCart(
+
+      cart
+      .map((item)=>
+
+        item.cartId === id
+
+        ? {
+            ...item,
+            qty:item.qty - 1
+        }
+
+        : item
+
+      )
+
+      .filter(item=>item.qty > 0)
+
+    );
+
+  };
+
+
+
+  const clearCart = () => {
+
+    setCart([]);
+
+  };
+
+
 
   if (!isOpen) return null;
 
-  return (
-    <>
-      {/* overlay */}
-      <div className="cart-overlay" onClick={toggleCart}></div>
 
-      {/* popup */}
+
+  return (
+
+    <>
+
+
+      <div
+        className="cart-overlay"
+        onClick={toggleCart}
+      />
+
+
+
       <div className="cart-popup">
 
+
         <div className="cart-header">
-          <h3>🛒 ตะกร้า</h3>
-          <button onClick={toggleCart}>✖</button>
+
+          <h3>
+            🛒 ตะกร้า
+          </h3>
+
+
+          <button
+            onClick={toggleCart}
+          >
+            ✖
+          </button>
+
+
         </div>
 
-        {cart.length === 0 ? (
-          <p>ยังไม่มีสินค้า</p>
-        ) : (
-          cart.map((item) => (
-            <div className="cart-item" key={item.id}>
+
+
+
+        {
+          cart.length === 0
+
+          ?
+
+          (
+            <p>
+              ยังไม่มีสินค้า
+            </p>
+          )
+
+
+          :
+
+
+          cart.map((item)=>(
+
+
+            <div
+              className="cart-item"
+              key={item.cartId}
+            >
+
+
+
               <div>
-                <p>{item.name}</p>
-                <small>
-                  {item.price} x {item.qty}
-                </small>
+
+
+                <h4>
+                  {item.name}
+                </h4>
+
+
+
+                <p>
+                  ราคา {item.price} บาท
+                </p>
+
+
+
+                {
+  item.options && (
+
+    <small className="cart-options">
+
+      {[
+        item.options.size && `Size ${item.options.size}`,
+        item.options.temperature,
+        item.options.sweet && `หวาน ${item.options.sweet}`,
+        item.options.ice && `น้ำแข็ง ${item.options.ice}`
+      ]
+      .filter(Boolean)
+      .join(" • ")}
+
+    </small>
+
+  )
+}
+
+
+
+                {
+                  item.toppings?.length > 0 && (
+
+                    <div>
+
+                      Topping:
+
+                      {
+                        item.toppings.map((t)=>(
+
+                          <div key={t.name}>
+
+                            + {t.name}
+
+                          </div>
+
+                        ))
+
+                      }
+
+
+                    </div>
+
+                  )
+                }
+
+
+
+
+                <div className="qty-control">
+
+
+                  <button
+                    onClick={()=>decreaseQty(item.cartId)}
+                  >
+                    -
+                  </button>
+
+
+
+                  <span>
+                    {item.qty}
+                  </span>
+
+
+
+                  <button
+                    onClick={()=>increaseQty(item.cartId)}
+                  >
+                    +
+                  </button>
+
+
+
+                </div>
+
+
+
               </div>
 
-              <button onClick={() => removeItem(item.id)}>
-                ❌
-              </button>
-            </div>
-          ))
-        )}
 
-        {cart.length > 0 && (
-          <button className="clear-btn" onClick={clearCart}>
+            </div>
+
+
+          ))
+
+        }
+
+
+
+        {
+          cart.length > 0 &&
+
+          <button
+            className="clear-btn"
+            onClick={clearCart}
+          >
             ลบทั้งหมด
           </button>
-        )}
 
-        <hr />
+        }
 
-        <h4>รวม: {total} บาท</h4>
+
+
+        <hr/>
+
+
+        <h4>
+          รวม: {total} บาท
+        </h4>
+
+
+
       </div>
+
+
     </>
+
   );
+
 }
+
 
 export default Cart;

@@ -5,16 +5,26 @@ import Hero from "./components/Hero/Hero";
 import Menu from "./components/Menu/Menu";
 import Table from "./components/Table/Table";
 import Cart from "./components/Cart/Cart";
+import ProductModal from "./components/ProductModal/ProductModal";
 
 function App() {
   const [cart, setCart] = useState([]);
   const [table, setTable] = useState(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   // ✅ toggle cart (กัน bug)
   const toggleCart = () => {
     setIsCartOpen((prev) => !prev);
   };
+  const openModal = (item) => {
+  setSelectedProduct(item);
+};
+
+
+const closeModal = () => {
+  setSelectedProduct(null);
+};
 
   // 💾 โหลดข้อมูล
   useEffect(() => {
@@ -36,34 +46,54 @@ function App() {
   }, [table]);
 
   // ➕ เพิ่มสินค้า
-  const addToCart = (item) => {
-    setCart((prev) => {
-      const exist = prev.find((i) => i.id === item.id);
+ const addToCart = (item) => {
 
-      if (exist) {
-        return prev.map((i) =>
-          i.id === item.id
-            ? { ...i, qty: i.qty + 1 }
-            : i
-        );
-      }
+  setCart((prev) => {
 
-      return [...prev, { ...item, qty: 1 }];
-    });
-  };
+    const exist = prev.find(
+      (i) => i.cartId === item.cartId
+    );
+
+
+    if (exist) {
+
+      return prev.map((i) =>
+
+        i.cartId === item.cartId
+
+        ? {
+            ...i,
+            qty: i.qty + item.qty
+          }
+
+        : i
+
+      );
+
+    }
+
+
+    return [
+      ...prev,
+      item
+    ];
+
+  });
+
+};
 
   // ➖ ลบทีละ 1
-  const removeOne = (id) => {
-    setCart((prev) =>
-      prev
-        .map((item) =>
-          item.id === id
-            ? { ...item, qty: item.qty - 1 }
-            : item
-        )
-        .filter((item) => item.qty > 0)
-    );
-  };
+const removeOne = (id) => {
+  setCart((prev) =>
+    prev
+      .map((item) =>
+        item.cartId === id
+          ? { ...item, qty: item.qty - 1 }
+          : item
+      )
+      .filter((item) => item.qty > 0)
+  );
+};
 
   // 🗑️ ลบทั้งหมด
   const clearCart = () => {
@@ -81,14 +111,22 @@ function App() {
 
       <Hero />
 
-      <Menu addToCart={addToCart} />
+      <Menu 
+  openModal={openModal}
+/>
 
       <Cart
         cart={cart}
         setCart={setCart}
         isOpen={isCartOpen}
         toggleCart={toggleCart}
+        
       />
+      <ProductModal
+  product={selectedProduct}
+  closeModal={closeModal}
+  addToCart={addToCart}
+/>
     </>
   );
 }

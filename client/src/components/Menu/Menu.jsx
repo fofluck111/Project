@@ -1,38 +1,80 @@
 import "./Menu.css";
 
-function Menu({ addToCart }) {
-  const items = [
-    { id: 1, name: "Coffee", price: 60 },
-    { id: 2, name: "Latte", price: 70 },
-  { id: 3, name: "Cake", price: 80 },
-    
-    
-  ];
+import menuData from "../../data/menuData";
+
+
+function Menu({ openModal }) {
+
 
   return (
-    <div className="menu">
 
-      <h2>☕ เมนู</h2>
+    <section className="menu-section">
+
+
+      <h2>
+        ☕ เมนู
+      </h2>
+
 
       <div className="menu-grid">
 
-        {items.map((item) => (
-          <div className="menu-card" key={item.id}>
 
-            <h3>{item.name}</h3>
-            <p>{item.price} บาท</p>
+        {
+          menuData.map((item)=>(
 
-            <button onClick={() => addToCart(item)}>
-              ➕ เพิ่มลงตะกร้า
-            </button>
+            <div 
+              className="menu-card"
+              key={item.id}
+            >
 
-          </div>
-        ))}
+
+              <div className="menu-image">
+
+                <img 
+                  src={item.image}
+                  alt={item.name}
+                />
+
+              </div>
+
+
+
+              <h3>
+                {item.name}
+              </h3>
+
+
+
+              <p>
+                {item.price} บาท
+              </p>
+
+
+
+              <button
+                onClick={() => openModal(item)}
+              >
+
+                ➕ เพิ่มลงตะกร้า
+
+              </button>
+
+
+            </div>
+
+
+          ))
+        }
+
 
       </div>
 
-    </div>
+
+    </section>
+
   );
+
 }
+
 
 export default Menu;
