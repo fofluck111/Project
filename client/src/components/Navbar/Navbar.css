@@ -165,10 +165,9 @@
 
 .logo{
 
-  font-size:22px;
+  font-size:20px;
 
 }
-
 
 
 .hamburger{
@@ -207,7 +206,6 @@
 
 .menu{
 
-
   position:absolute;
 
   top:75px;
@@ -216,27 +214,23 @@
 
   width:100%;
 
-
   background:white;
-
 
   flex-direction:column;
 
-
   gap:0;
-
 
   padding:15px 0;
 
-
   box-shadow:var(--shadow-md);
-
 
   transform:translateY(-120%);
 
-
   transition:.3s;
 
+  opacity:0;
+
+  pointer-events:none;
 
 }
 
@@ -245,6 +239,10 @@
 .menu.active{
 
   transform:translateY(0);
+
+  opacity:1;
+
+  pointer-events:auto;
 
 }
 
