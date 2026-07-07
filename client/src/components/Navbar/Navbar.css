@@ -140,11 +140,24 @@
 
   border-radius:12px;
 
-  background:var(--primary);
+  background:#f472b6;
+
+  color:white;
 
   font-size:22px;
 
   cursor:pointer;
+
+  transition:.3s;
+
+}
+
+
+.hamburger:hover {
+
+  background:#ec4899;
+
+  transform:scale(1.05);
 
 }
 
